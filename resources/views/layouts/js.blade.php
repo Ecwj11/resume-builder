@@ -1,4 +1,28 @@
 <script>
+	$(function() {
+		initDatePicker();
+		initSummernote();
+	});
+
+	function initSummernote() {
+		$('textarea[data-summernote-code="true"]').summernote({
+	        height: 300
+	    });
+	}
+
+	function initDatePicker() {
+		$('.date-picker').datepicker( {
+	        changeMonth: true,
+	        changeYear: true,
+	        showButtonPanel: true,
+	        dateFormat: 'yy-mm-dd',
+	        yearRange: '1980:' + (new Date).getFullYear(),
+	        onClose: function(dateText, inst) { 
+	            $(this).datepicker('setDate', new Date(inst.selectedYear, inst.selectedMonth, 1));
+	        }
+	    });
+	}
+
     function logout(e) {
     	$('#logout-form').submit();
     }

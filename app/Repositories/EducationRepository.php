@@ -89,8 +89,8 @@ class EducationRepository implements EducationRepositoryInterface
                     'resume_id' => $resumeId,
                     'program' => $datas['program'][$i],
                     'institute' => $datas['institute'][$i],
-                    'start_year' => $datas['start_year'][$i],
-                    'end_year' => isset($datas['end_year'][$i]) ? $datas['end_year'][$i] : null,
+                    'start_date' => $datas['start_date'][$i],
+                    'end_date' => isset($datas['end_date'][$i]) ? $datas['end_date'][$i] : null,
                     'grade' => $datas['grade'][$i],
                     'created_at' => $datas['date_now'],
                 ];
@@ -105,7 +105,7 @@ class EducationRepository implements EducationRepositoryInterface
         $model = Education::where([
             ['resume_id', '=', $resumeId],
             ['deleted_at', '=', NULL]
-        ])->orderBy('start_year')->get()->all();
+        ])->orderBy('start_date')->get()->all();
 
         return $model;
     }

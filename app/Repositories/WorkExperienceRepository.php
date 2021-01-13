@@ -90,8 +90,8 @@ class WorkExperienceRepository implements WorkExperienceRepositoryInterface
                     'position' => $datas['position'][$i],
                     'company' => $datas['company'][$i],
                     'description' => $datas['we_description'][$i],
-                    'start_year' => $datas['we_start_year'][$i],
-                    'end_year' => isset($datas['we_end_year'][$i]) ? $datas['we_end_year'][$i] : null,
+                    'start_date' => $datas['we_start_date'][$i],
+                    'end_date' => isset($datas['we_end_date'][$i]) ? $datas['we_end_date'][$i] : null,
                     'created_at' => $datas['date_now'],
                 ];
             }
@@ -105,7 +105,7 @@ class WorkExperienceRepository implements WorkExperienceRepositoryInterface
         $model = WorkExperience::where([
             ['resume_id', '=', $resumeId],
             ['deleted_at', '=', NULL]
-        ])->orderBy('start_year')->get()->all();
+        ])->orderBy('start_date')->get()->all();
 
         return $model;
     }

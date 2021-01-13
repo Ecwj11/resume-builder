@@ -18,10 +18,17 @@
 
         <link rel="stylesheet" type="text/css" href="{{ asset('plugins/jquery.powertip-1.3.1/css/jquery.powertip.css') }}" />
 
+        <link rel="stylesheet" type="text/css" href="{{ asset('css/jquery-ui.css') }}" />
+
+        <link rel="stylesheet" href="{{ asset('plugins/summernote/css/summernote-bs4.css') }}">
+
         <link rel="stylesheet" href="{{ asset('css/project.css') }}" />
 
         <!-- Styles -->
-        <style>        
+        <style>
+            .ui-datepicker-calendar {
+                display: none;
+            }
         </style>
 
         @yield('css')
@@ -68,10 +75,7 @@
 
         <script type="text/javascript" src="{{ asset('plugins/jquery.powertip-1.3.1/jquery.powertip.js') }}"></script>
         
-        <script type="text/javascript" src="{{ asset('js/jquery.cardcheck.min.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('plugins/jquery.countdownTimer/jquery.countdownTimer.min.js') }}"></script>
-        
-        <script type="text/javascript" src="{{ asset('js/html2canvas.min.js') }}"></script>
+        <script src="{{ asset('plugins/summernote/js/summernote-bs4.js') }}"></script>
         
         <script src="{{ asset('js/project.js') }}"></script>
 

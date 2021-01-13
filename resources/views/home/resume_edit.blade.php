@@ -48,9 +48,9 @@
 			    {{ Form::label('address', 'Address') }}
 	      		{{ Form::textarea('address', $resume->address, ['class' => 'form-control', 'placeholder' => '', 'required' => true, 'rows' => 3]) }}
 		    </div>
-		    <div class="col-md-6">
+		    <div class="col-md-12">
 			    {{ Form::label('description', 'Description') }}
-	      		{{ Form::textarea('description', $resume->description, ['class' => 'form-control', 'placeholder' => '', 'required' => true, 'rows' => 3]) }}
+	      		{{ Form::textarea('description', $resume->description, ['class' => 'form-control', 'placeholder' => '', 'required' => true, 'rows' => 3, 'data-summernote-code' => "true"]) }}
 		    </div>
 	  	</div>
 
@@ -86,12 +86,14 @@
 
 			<div class="form-group row">
 				<div class="col-md-4">
-					{{ Form::label('start_year', 'Start Year') }}
-		      		{{ Form::select('start_year', $yearList, null, ['class' => 'form-control', 'placeholder' => 'Select year', 'required' => false, 'name' => 'start_year[]']) }}
+					{{ Form::label('start_date', 'Start Year') }}
+		      		{{--{{ Form::select('start_date', $yearList, null, ['class' => 'form-control', 'placeholder' => 'Select year', 'required' => false, 'name' => 'start_date[]']) }}--}}
+		      		{{ Form::text('start_date', old('start_date') ? old('start_date') : '', ['class' => 'date-picker form-control', 'placeholder' => '', 'required' => false, 'name' => 'start_date[]']) }}
 		      	</div>
 		      	<div class="col-md-4">
-					{{ Form::label('end_year', 'End Year') }}
-		      		{{ Form::select('end_year', $yearList, null, ['class' => 'form-control', 'placeholder' => 'Select year', 'required' => false, 'name' => 'end_year[]']) }}
+					{{ Form::label('end_date', 'End Year') }}
+		      		{{--{{ Form::select('end_date', $yearList, null, ['class' => 'form-control', 'placeholder' => 'Select year', 'required' => false, 'name' => 'end_date[]']) }}--}}
+		      		{{ Form::text('end_date', old('end_date') ? old('end_date') : '', ['class' => 'date-picker form-control', 'placeholder' => '', 'required' => false, 'name' => 'end_date[]']) }}
 		      	</div>
 		      	<div class="col-md-4">
 		      		{{ Form::label('ongoing', 'Ongoing') }}<br/>
@@ -122,16 +124,18 @@
 
 			<div class="form-group row">
 				<div class="col-md-4">
-					{{ Form::label('start_year', 'Start Year') }}
-		      		{{ Form::select('start_year', $yearList, $education->start_year, ['class' => 'form-control', 'placeholder' => 'Select year', 'required' => true, 'name' => 'start_year_' . $education->id]) }}
+					{{ Form::label('start_date', 'Start Year') }}
+		      		{{--{{ Form::select('start_date', $yearList, $education->start_date, ['class' => 'form-control', 'placeholder' => 'Select year', 'required' => true, 'name' => 'start_date_' . $education->id]) }}--}}
+		      		{{ Form::text('start_date', $education->start_date, ['class' => 'date-picker form-control', 'placeholder' => '', 'required' => true, 'name' => 'start_date_' . $education->id]) }}
 		      	</div>
 		      	<div class="col-md-4">
-					{{ Form::label('end_year', 'End Year') }}
-		      		{{ Form::select('end_year', $yearList, $education->end_year, ['class' => 'form-control', 'placeholder' => 'Select year', 'required' => $education->end_year == NULL ? false : true, 'name' => 'end_year_' . $education->id]) }}
+					{{ Form::label('end_date', 'End Year') }}
+		      		{{--{{ Form::select('end_date', $yearList, $education->end_date, ['class' => 'form-control', 'placeholder' => 'Select year', 'required' => $education->end_date == NULL ? false : true, 'name' => 'end_date_' . $education->id]) }}--}}
+		      		{{ Form::text('end_date', $education->end_date, ['class' => 'date-picker form-control', 'placeholder' => '', 'required' => $education->end_date == NULL ? false : true, 'name' => 'end_date_' . $education->id]) }}
 		      	</div>
 		      	<div class="col-md-4">
 		      		{{ Form::label('ongoing', 'Ongoing') }}<br/>
-		      		{{ Form::checkbox('ongoing', '1', $education->end_year == NULL ? true : false, ['class' => '', 'onclick' => 'educationOngoing(this);']) }}
+		      		{{ Form::checkbox('ongoing', '1', $education->end_date == NULL ? true : false, ['class' => '', 'onclick' => 'educationOngoing(this);']) }}
 		      	</div>
 			</div>
 
@@ -168,12 +172,12 @@
 
 			<div class="form-group row">
 				<div class="col-md-4">
-					{{ Form::label('we_start_year', 'Start Year') }}
-		      		{{ Form::select('we_start_year', $yearList, null, ['class' => 'form-control', 'placeholder' => 'Select year', 'required' => false, 'name' => 'we_start_year[]']) }}
+					{{ Form::label('we_start_date', 'Start Year') }}
+		      		{{ Form::text('we_start_date', old('we_start_date') ? old('we_start_date') : '', ['class' => 'date-picker form-control', 'placeholder' => '', 'required' => false, 'name' => 'we_start_date[]']) }}
 		      	</div>
 		      	<div class="col-md-4">
-					{{ Form::label('we_end_year', 'End Year') }}
-		      		{{ Form::select('we_end_year', $yearList, null, ['class' => 'form-control', 'placeholder' => 'Select year', 'required' => false, 'name' => 'we_end_year[]']) }}
+					{{ Form::label('we_end_date', 'End Year') }}
+		      		{{ Form::text('we_end_date', old('we_end_date') ? old('we_end_date') : '', ['class' => 'date-picker form-control', 'placeholder' => '', 'required' => false, 'name' => 'we_end_date[]']) }}
 		      	</div>
 		      	<div class="col-md-4">
 		      		{{ Form::label('ongoing', 'Ongoing') }}<br/>
@@ -182,9 +186,9 @@
 			</div>
 
 			<div class="form-group row">
-				<div class="col-md-6">
+				<div class="col-md-12">
 					{{ Form::label('we_description', 'Description') }}
-			      	{{ Form::textarea('we_description', '', ['class' => 'form-control', 'placeholder' => '', 'required' => false, 'rows' => 3, 'name' => 'we_description[]']) }}
+			      	{{ Form::textarea('we_description', '', ['class' => 'form-control', 'placeholder' => '', 'required' => false, 'rows' => 3, 'name' => 'we_description[]', 'data-summernote-code' => "true"]) }}
 			    </div>			    
 			</div>
 		</div>
@@ -204,23 +208,23 @@
 
 			<div class="form-group row">
 				<div class="col-md-4">
-					{{ Form::label('we_start_year', 'Start Year') }}
-		      		{{ Form::select('we_start_year', $yearList, $workExperience->start_year, ['class' => 'form-control', 'placeholder' => 'Select year', 'required' => true, 'name' => 'we_start_year_' . $workExperience->id]) }}
+					{{ Form::label('we_start_date', 'Start Year') }}
+		      		{{ Form::text('we_start_date', $workExperience->start_date, ['class' => 'date-picker form-control', 'placeholder' => '', 'required' => false, 'name' => 'we_start_date_' . $workExperience->id]) }}
 		      	</div>
 		      	<div class="col-md-4">
-					{{ Form::label('we_end_year', 'End Year') }}
-		      		{{ Form::select('we_end_year', $yearList, $workExperience->end_year, ['class' => 'form-control', 'placeholder' => 'Select year', 'required' => $workExperience->end_year == NULL ? false : true, 'name' => 'we_end_year_' . $workExperience->id]) }}
+					{{ Form::label('we_end_date', 'End Year') }}		      		
+		      		{{ Form::text('we_end_date', $workExperience->end_date, ['class' => 'date-picker form-control', 'placeholder' => '', 'required' => false, 'name' => 'we_end_date_' . $workExperience->id]) }}
 		      	</div>
 		      	<div class="col-md-4">
 		      		{{ Form::label('ongoing', 'Ongoing') }}<br/>
-		      		{{ Form::checkbox('ongoing', '1', $workExperience->end_year == NULL ? true : false, ['class' => '', 'onclick' => 'workExperienceOngoing(this);']) }}
+		      		{{ Form::checkbox('ongoing', '1', $workExperience->end_date == NULL ? true : false, ['class' => '', 'onclick' => 'workExperienceOngoing(this);']) }}
 		      	</div>
 			</div>
 
 			<div class="form-group row">
-				<div class="col-md-6">
+				<div class="col-md-12">
 					{{ Form::label('we_description', 'Description') }}
-			      	{{ Form::textarea('we_description', $workExperience->description, ['class' => 'form-control', 'placeholder' => '', 'required' => true, 'rows' => 5, 'name' => 'we_description_' . $workExperience->id]) }}
+			      	{{ Form::textarea('we_description', $workExperience->description, ['class' => 'form-control', 'placeholder' => '', 'required' => true, 'rows' => 5, 'name' => 'we_description_' . $workExperience->id, 'data-summernote-code' => "true"]) }}
 			    </div>
 			    @if ($loop->index > 0)
 				    <div class="col-md-6">
@@ -249,14 +253,14 @@
 			e.preventDefault();
 			var data = new FormData(document.querySelector('#resume-form'));
 
-			//check is end year > start year
-			var endYears = $('select[name="end_year[]"]');
+			//check is end date > start date
+			var endDates = $('[name="end_date[]"]');
 			var error = [];
-			$.each($('select[name="start_year[]"]'), function(k, v) {
-				var startYear = v.value;
-				var endYear = endYears[k].value;
-				if (endYear != '' && endYear < startYear) {
-					error.push('Education end year should larger or equal to start year');
+			$.each($('[name="start_date[]"]'), function(k, v) {
+				var startDate = v.value;
+				var endDate = endDates[k].value;
+				if (endDate != '' && endDate < startDate) {
+					error.push('Education end date should larger or equal to start date');
 				}
 			});
 			if (error.length > 0) {
@@ -264,12 +268,12 @@
 			}
 
 			error = [];
-			var endYears = $('select[name="we_end_year[]"]');
-			$.each($('select[name="we_start_year[]"]'), function(k, v) {
-				var startYear = v.value;
-				var endYear = endYears[k].value;
-				if (endYear != '' && endYear < startYear) {
-					error.push('Work experience end year should larger or equal to start year');
+			var endDates = $('[name="we_end_date[]"]');
+			$.each($('[name="we_start_date[]"]'), function(k, v) {
+				var startDate = v.value;
+				var endDate = endDates[k].value;
+				if (endDate != '' && endDate < startDate) {
+					error.push('Work experience end date should larger or equal to start date');
 				}
 			});
 
@@ -309,6 +313,7 @@
 	function addEducation(e) {
 		$(e).after('<div class="new-field">' + educationField + '</div>');
 		$(e).next('.new-field').find('.form-group:last').append('<div class="col-md-6"><a href="javascript:void(0);" onclick="removeField(this);" class="text-danger"><i class="fa fa-minus"></i> Remove education</a></div>');
+		initDatePicker();
 	}
 
 	function removeField(e) {
@@ -318,23 +323,24 @@
 	function addWorkExperience(e) {
 		$(e).after('<div class="new-field">' + workExperienceField + '</div>');
 		$(e).next('.new-field').find('.form-group:last').append('<div class="col-md-6"><a href="javascript:void(0);" onclick="removeField(this);" class="text-danger"><i class="fa fa-minus"></i> Remove work experience</a></div>');
+		initDatePicker();
 	}
 
 	function educationOngoing(e) {
 		var isChecked = $(e).prop('checked');
 		if (isChecked) {
-			$(e).closest('.form-group').find('select[id="end_year"]').removeAttr('required').val('').attr('disabled', 'disabled');
+			$(e).closest('.form-group').find('select[id="end_date"]').removeAttr('required').val('').attr('disabled', 'disabled');
 		} else {
-			$(e).closest('.form-group').find('select[id="end_year"]').attr('required', 'required').removeAttr('disabled');
+			$(e).closest('.form-group').find('select[id="end_date"]').attr('required', 'required').removeAttr('disabled');
 		}
 	}
 
 	function workExperienceOngoing(e) {
 		var isChecked = $(e).prop('checked');
 		if (isChecked) {
-			$(e).closest('.form-group').find('select[id="we_end_year"]').removeAttr('required').val('').attr('disabled', 'disabled');
+			$(e).closest('.form-group').find('select[id="we_end_date"]').removeAttr('required').val('').attr('disabled', 'disabled');
 		} else {
-			$(e).closest('.form-group').find('select[id="we_end_year"]').attr('required', 'required').removeAttr('disabled');
+			$(e).closest('.form-group').find('select[id="we_end_date"]').attr('required', 'required').removeAttr('disabled');
 		}
 	}	
 </script>

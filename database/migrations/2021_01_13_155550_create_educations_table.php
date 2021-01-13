@@ -17,8 +17,8 @@ class CreateEducationsTable extends Migration
             $table->id();
             $table->string('program', 255)->nullable();
             $table->string('institute', 255)->nullable();
-            $table->integer('start_year')->nullable();
-            $table->integer('end_year')->nullable();
+            $table->date('start_date')->nullable();
+            $table->date('end_date')->nullable();
             $table->string('grade', 100)->nullable();
             $table->bigInteger('resume_id')->unsigned()->nullable();
             $table->timestamps();

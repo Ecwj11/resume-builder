@@ -18,8 +18,8 @@ class CreateWorkExperiencesTable extends Migration
             $table->string('position', 255)->nullable();
             $table->string('company', 255)->nullable();
             $table->longText('description')->nullable();
-            $table->integer('start_year')->nullable();
-            $table->integer('end_year')->nullable();
+            $table->date('start_date')->nullable();
+            $table->date('end_date')->nullable();
             $table->bigInteger('resume_id')->unsigned()->nullable();
             $table->timestamps();
             $table->dateTime('deleted_at')->nullable();

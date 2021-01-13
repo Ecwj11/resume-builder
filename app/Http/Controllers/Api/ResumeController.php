@@ -46,14 +46,14 @@ class ResumeController extends Controller
                     'description' => 'required',
                     'program.*' => 'required',
                     'institute.*' => 'required',
-                    'start_year.*' => 'required|integer|between:' . $this->firstYear . ',' . $this->endYear,
-                    'end_year.*' => 'required|integer|between:' . $this->firstYear . ',' . $this->endYear,
+                    'start_date.*' => 'required',
+                    'end_date.*' => 'required',
                     'grade.*' => 'required',
                     'position.*' => 'required',
                     'company.*' => 'required',
                     'we_description.*' => 'required',
-                    'we_start_year.*' => 'required|integer|between:' . $this->firstYear . ',' . $this->endYear,
-                    'we_end_year.*' => 'required|integer|between:' . $this->firstYear . ',' . $this->endYear,
+                    'we_start_date.*' => 'required',
+                    'we_end_date.*' => 'required',
                     'profile_picture'   => 'required|image|mimes:jpeg,jpg,png',
                 ];
                 $validator = Validator::make($datas, $validation);
@@ -115,14 +115,14 @@ class ResumeController extends Controller
                     'description' => 'required',
                     'program.*' => 'nullable',
                     'institute.*' => 'nullable',
-                    'start_year.*' => 'nullable|integer|between:' . $this->firstYear . ',' . $this->endYear,
-                    'end_year.*' => 'nullable|integer|between:' . $this->firstYear . ',' . $this->endYear,
+                    'start_date.*' => 'nullable',
+                    'end_date.*' => 'nullable',
                     'grade.*' => 'nullable',
                     'position.*' => 'nullable',
                     'company.*' => 'nullable',
                     'we_description.*' => 'nullable',
-                    'we_start_year.*' => 'nullable|integer|between:' . $this->firstYear . ',' . $this->endYear,
-                    'we_end_year.*' => 'nullable|integer|between:' . $this->firstYear . ',' . $this->endYear
+                    'we_start_date.*' => 'nullable',
+                    'we_end_date.*' => 'nullable',
                 ];
                 $validator = Validator::make($datas, $validation);
                 if($validator->fails()){
@@ -178,8 +178,8 @@ class ResumeController extends Controller
 		        			$this->educationRepository->update($educationId, [
 		        				'program' => $datas['program_' . $educationId],
 				                'institute' => $datas['institute_' . $educationId],
-				                'start_year' => $datas['start_year_' . $educationId],
-				                'end_year' => isset($datas['end_year_' . $educationId]) ? $datas['end_year_' . $educationId] : null,
+				                'start_date' => $datas['start_date_' . $educationId],
+				                'end_date' => isset($datas['end_date_' . $educationId]) ? $datas['end_date_' . $educationId] : null,
 				                'grade' => $datas['grade_' . $educationId],
 				                'updated_at' => $this->dateNow,
 		        			]);
@@ -204,8 +204,8 @@ class ResumeController extends Controller
 		        				'position' => $datas['position_' . $workExperienceId],
 				                'company' => $datas['company_' . $workExperienceId],
 				                'description' => $datas['we_description_' . $workExperienceId],
-				                'start_year' => $datas['we_start_year_' . $workExperienceId],
-				                'end_year' => isset($datas['we_end_year_' . $workExperienceId]) ? $datas['we_end_year_' . $workExperienceId] : null,
+				                'start_date' => $datas['we_start_date_' . $workExperienceId],
+				                'end_date' => isset($datas['we_end_date_' . $workExperienceId]) ? $datas['we_end_date_' . $workExperienceId] : null,
 				                'updated_at' => $this->dateNow,
 		        			]);
 		        		}

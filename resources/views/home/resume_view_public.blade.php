@@ -54,8 +54,10 @@
 				</div>
 			</div>
 			<div class="col-md-8">
-				<div class="card-header">About Me</div>
-				{{ $resume->description }}
+				<div class="card-header">
+					<h3>About Me</h3>
+				</div>
+				{!! $resume->description !!}
 			</div>
 		</div>
 	</div>
@@ -67,8 +69,8 @@
 				</div>
 				@foreach ($educations as $education)
 				<h4>{{ $education->program }}</h4>
-				<i>{{ $education->institute }}</i>
-				<p>{{ $education->start_year . ' - ' . ($education->end_year == '' ? 'Present' : $education->end_year)}}</p>
+				<small><i>{{ $education->institute }}</i></small>
+				<p>{{ date('M Y', strtotime($education->start_date)) . ' - ' . ($education->end_date == '' ? 'Present' : date('M Y', strtotime($education->end_date))) }}</p>
 				@endforeach
 			</div>
 			<div class="col-md-8">
@@ -77,8 +79,8 @@
 				</div>
 				@foreach ($workExperiences as $workExperience)
 				<h4>{{ $workExperience->position }}</h4>
-				<i style="text-decoration: underline;">{{ $workExperience->company }} / {{ $workExperience->start_year . ' - ' . ($workExperience->end_year == '' ? 'Present' : $workExperience->end_year)}}</i>
-				<p>{{ $workExperience->description }}</p>
+				<small><i style="text-decoration: underline;">{{ $workExperience->company }} / {{ date('M Y', strtotime($workExperience->start_date)) . ' - ' . ($workExperience->end_date == '' ? 'Present' : date('M Y', strtotime($workExperience->end_date))) }}</i></small>
+				<p>{!! $workExperience->description !!}</p>
 				@endforeach
 			</div>
 		</div>

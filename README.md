@@ -9,6 +9,6 @@
 9. run "php artisan db:seed" to import role and admin data
 10. run "php artisan serve" to start the project
 
-Login admin to manage all created resumes\
-email: admin@admin.com\
+Login admin to manage all created resumes  
+email: admin@admin.com  
 password: 12345678

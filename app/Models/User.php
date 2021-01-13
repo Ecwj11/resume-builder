@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use App\Models\Role;
+use Auth;
 
 class User extends Authenticatable
 {
@@ -36,4 +38,15 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public static function isAdmin()
+    {
+        $model = Role::where(['id' => Auth::user()->role_id, 'role' => Role::ROLE_ADMIN])->get()->first();
+
+        if ($model) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

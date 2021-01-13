@@ -21,7 +21,7 @@ class ResumeController extends Controller
         $this->request = $request;
     }
 
-    public function viewResume() 
+    public function resumeView() 
     {
         $token = $this->request->route('token');
         $tokenArr = $this->hashidsHelper->decodeHex($token);

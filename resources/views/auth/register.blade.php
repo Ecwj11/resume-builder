@@ -20,6 +20,7 @@
   </p>
 
   <p>{{ Form::submit('Register', array('class' => 'btn btn-primary')) }}</p>
+  <p>Already have an account? <a href="{{ route('login') }}">Click here to login</a></p>
   {{ Form::close() }}
 </div>
 

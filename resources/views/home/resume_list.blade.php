@@ -33,7 +33,9 @@
 <div class="row">
 <div class="col-md-12">
 	<div class="m-1">
-		<a href="{{ route('resumeCreate') }}" class="btn btn-primary mb-1">Create Resume</a>
+		@if (!Auth::user()->isAdmin())
+			<a href="{{ route('resumeCreate') }}" class="btn btn-primary mb-1">Create Resume</a>
+		@endif
 		<table id="ajax_datatable" class="table table-striped table-bordered dtr-inline">
 	        <thead class="">
 	        	<tr>
@@ -95,7 +97,7 @@
 		var url = $(e).data('url');
 		var html = '<div class="row">' + 
 			'<div class="col-md-10"><input type="text" readonly id="share-url-' + id + '" value="' + url + '" class="form-control"></div>' +
-			'<div class="col-md-2"><a href="' + url + '" target="_blank" data-toggle="tooltip" title="Visit Resume Link"><i class="fa fa-eye"></i></a>&nbsp;<a href="javascript:void(0);" data-toggle="tooltip" title="Copy Resume Link" data-id="share-url-' + id + '" onclick="copy(this);"><i class="fa fa-copy"></i></a></div>' +
+			'<div class="col-md-2"><a href="javascript:void(0);" data-toggle="tooltip" title="Copy Resume Link" data-id="share-url-' + id + '" onclick="copy(this);"><i class="fa fa-copy"></i></a></div>' +
 			'</div>';
 		flash_notype({
 			title: 'Share resume',

@@ -97,8 +97,16 @@ class ResumeRepository implements ResumeRepositoryInterface
         $length = $request->input("length");
         $searchValue = $request->input("search")["value"];
 
-        $searchSql = "";
-        $params = [Auth::id()];
+        $searchSql = "";        
+        $params = [];
+        
+        $isAdmin = Auth::user()->isAdmin();
+        if ($isAdmin) {
+            $userSql = "";
+        } else {
+            $userSql = " AND resumes.user_id = ? ";
+            $params = [Auth::id()];
+        }
 
         $order = $request->input("order");
         $columns = $request->input("columns");
@@ -133,6 +141,7 @@ class ResumeRepository implements ResumeRepositoryInterface
             'resumes.address',
             "CONCAT('<a href=\"javascript:void(0);\" data-href=\"/storage/users/', resumes.user_id, '/', resumes.profile_picture, '\" onclick=\"viewImage(this);\"><img src=\"/storage/users/', resumes.user_id, '/', resumes.profile_picture, '\" width=\"100px\"></a>') AS profile_picture",
             "CONCAT('
+            <a href=\"_share_url_\" target=\"_blank\"><i class=\"fa fa-eye\"></i></a>&nbsp;
             <a href=\"$resumeEditUrl/', resumes.id, '\" onclick=\"edit(this);\" target=\"_blank\"><i class=\"fa fa-edit text-warning\"></i></a>&nbsp;
             <a href=\"javascript:void(0);\" onclick=\"share(this);\" data-url=\"_share_url_\"><i class=\"fa fa-share\"></i></a>&nbsp;
             <a href=\"javascript:void(0);\" onclick=\"deleteResume(this);\" data-id=\"', resumes.id, '\" data-label=\"', resumes.label, '\"><i class=\"fa fa-trash text-danger\"></i></a>
@@ -158,11 +167,11 @@ class ResumeRepository implements ResumeRepositoryInterface
             }                
             $searchSql = trim($searchSql, 'OR ');
             $searchSql .= ") ";
-        }
+        }        
 
         $sql = "SELECT $sqlCol 
                 FROM resumes               
-                WHERE resumes.deleted_at IS NULL AND resumes.user_id = ?
+                WHERE resumes.deleted_at IS NULL $userSql
                 $searchSql 
                 $orderSql";
 
@@ -187,7 +196,7 @@ class ResumeRepository implements ResumeRepositoryInterface
             $datas[$i]->no = $i + 1;
             $token = $hashidsHelper->encodeHex($data->id);
             $action = $data->action;
-            $viewResumeUrl = route('viewResume');
+            $viewResumeUrl = route('resumeView');
             $datas[$i]->action = str_replace('_share_url_', $viewResumeUrl . '/' . $token, $action);
         }
 

@@ -28,7 +28,7 @@ Route::get('/home', 'HomeController@home')->name('home');
 Route::get('/resume/create', 'HomeController@resumeCreate')->name('resumeCreate');
 Route::get('/resume/edit/{resume_id?}', 'HomeController@resumeEdit')->name('resumeEdit');
 
-Route::get('/resume/{token?}', 'ResumeController@viewResume')->name('viewResume');
+Route::get('/resume/{token?}', 'ResumeController@resumeView')->name('resumeView');
 
 Route::post('api/resume/create', 'Api\ResumeController@createResume')->name('api.createResume');
 Route::post('api/resume/update', 'Api\ResumeController@updateResume')->name('api.updateResume');

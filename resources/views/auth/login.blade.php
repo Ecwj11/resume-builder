@@ -23,6 +23,7 @@
   </p>
 
   <p>{{ Form::submit('Login', array('class' => 'btn btn-primary')) }}</p>
+  <p>Don't have an account? <a href="{{ route('register') }}">Click here to register</a></p>
   {{ Form::close() }}
 </div>
 
